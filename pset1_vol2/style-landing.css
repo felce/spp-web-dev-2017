@@ -1,0 +1,205 @@
+body {
+
+    margin:0;  
+    padding:0; 
+    border:0; 
+    outline:0;  
+    list-style-type: none; 
+    overflow: scroll;
+  	display: block;
+    background-color: #009B76;
+    height: 100%;
+	min-width: 1024px;
+}
+
+header {
+
+	 border:0; outline:0;  list-style-type: none;
+    background-color: whitesmoke;
+    height: 50px;
+    vertical-align: middle;
+     line-height: 50px;
+}
+
+.cnt {
+    width: 100%;
+}
+
+
+
+
+.elements-header {
+
+	display: inline-block;
+	margin-left: 5%; 
+	
+}
+
+.title-header, .menu-header{
+	
+	display: inline-block;
+	text-align: center;
+}
+
+.title-header {
+
+	font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+	color: black;
+}
+
+.menu-header {
+    
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 150%;
+	font-family: Courier New, Courier, monospace;	
+    color: black;	
+}
+
+#menu {
+    padding-right: 5%;
+    float: right;
+}
+
+
+.title-header a {
+
+    color: black;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 300%;
+	display: inline-block;
+}
+
+.menu-header a {
+    
+    color: black;
+    vertical-align: middle;
+    font-size: 100%;
+	display: inline-block;
+}
+
+
+
+.product {
+    display: inline-block;
+    margin-top: 50px;
+    vertical-align: top;
+
+}
+
+.product  img{
+    height: 300px;
+}
+
+#imag {
+    margin-left: 10%;
+    width: 30%;
+
+}
+
+#buy {
+    margin-left: 15%;
+    width: 30%;
+}
+
+.white {
+    font-size: 150%;
+    color: white;
+    font-weight: bold;
+}
+
+.buy-text {
+    color: white;
+}
+
+.product button, .butt {
+    border: 3px solid whitesmoke;
+    background-color: #009B76;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 150%;
+    color: whitesmoke;
+
+}
+
+
+.tools {
+    
+    padding-top: 100px;
+    border:0; outline:0;  list-style-type: none;
+    background-color: whitesmoke;
+}
+
+.other {
+
+    border:0; outline:0;  list-style-type: none;
+
+    display: inline-block;
+    margin-left: 7%;
+    width: 26%;
+    vertical-align: top;
+}
+
+.img-other {
+    width: 100px;
+    height: 100px;
+ 
+    background-color: #009B76;
+
+    border-radius: 50%;
+}
+
+.img-other img{
+    width: 70%;
+    height: 70%;
+    /*margin-left: 15%;*/
+    margin-top: 15%;
+}
+
+.title-other {
+
+   font-weight: bold;
+   text-align: center;
+   
+}
+
+.text-other {
+
+   
+   text-align: center;
+   
+}
+
+
+.form {
+
+
+	padding-top: 10px;
+    padding-bottom: 50px;
+    border:0; outline:0;  list-style-type: none;
+  
+
+}
+
+input {
+    margin-top: 10px;
+    width: 30%;
+    height: 20px;
+}
+
+.form-text-ask {
+
+    height: 100px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.form p {
+    color: white;
+    font-size: 150%;
+    font-weight: bold;
+}
