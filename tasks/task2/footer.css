@@ -1,44 +1,44 @@
 footer {
-    width: 100%;
+  width: 100%;
 }
 
 .contact-form-container {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 input {
-    margin-top: 10px;
-    display: block;
-    width: 40%;
+  margin-top: 10px;
+  display: block;
+  width: 40%;
 }
 
 .sprt {
-    margin-top: 10px;
-    width: 40%;
-    border-top: 2px solid whitesmoke;
+  margin-top: 10px;
+  width: 40%;
+  border-top: 2px solid whitesmoke;
 }
 
 .sprt input {
-    width: 30%;
+  width: 30%;
 }
 
 .sprt .btn {
-    width: 40%;
-    margin-left: 5%;
-    display: inline-block;
+  width: 40%;
+  margin-left: 5%;
+  display: inline-block;
 }
 
 .inline {
-    display: inline-block;
+  display: inline-block;
 }
 
 .qstn {
-    height: 50px;
+  height: 50px;
 }
 
 .title-form {
-    text-align: center;
-    font-size: 150%;
-    font-weight: bolder;
-    color: whitesmoke;
+  text-align: center;
+  font-size: 150%;
+  font-weight: bolder;
+  color: whitesmoke;
 }
