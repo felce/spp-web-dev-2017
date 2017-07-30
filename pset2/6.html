@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>6</title>
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="October 13, 2014 11:13:00" id="firstDate">
+	<input type="text" placeholder="October 13, 2014 11:13:00" id="secondDate">
+	<button id="but">do it!</button><br>
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+
+	document.getElementById("but").onclick = checkInput;
+	
+	function checkInput() {
+
+		var firstDate = new Date(document.getElementById("firstDate").value);
+		var secondDate = new Date(document.getElementById("secondDate").value);
+
+		if (checkDate(firstDate, "firstDate") && checkDate(secondDate, "secondDate")) {
+			compareDates(firstDate, secondDate);
+		}
+	}
+
+	function checkDate(date, ID) {
+
+		var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+		var daysInMonthV = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+		console.log("check",date.getMonth(), date.getDate(), daysInMonth[date.getMonth()] )
+
+		if (date == "Invalid Date"	|| 
+			date.getMonth() > 12	|| 
+			date.getDate() > 31		|| 
+			date.getHours() > 24	|| 
+			date.getMinutes() > 60	||
+			(date.getFullYear()%4 != 0 && date.getDate() > daysInMonth[date.getMonth()]) ||
+			(date.getFullYear()%4 == 0 && date.getDate() > daysInMonthV[date.getMonth()]) ||
+			date.getSeconds() > 60) {
+
+			document.getElementById("errorText").innerHTML = "Invalid Date!";
+			document.getElementById(ID).value = "";
+			document.getElementById(ID).style.backgroundColor = '#E32636';
+			document.getElementById("result").innerHTML = "";
+
+			return false;
+		} else {
+			document.getElementById("errorText").innerHTML = "Ok!";
+			document.getElementById(ID).style.backgroundColor = 'white';
+			
+			return true;
+		}
+	}
+
+	function compareDates (firstDate, secondDate) {
+
+		arrFistDate = dateToArray(firstDate);
+		arrSecondDate = dateToArray(secondDate);
+
+		for (var i = 0; i < 6; i++) {
+			if(arrFistDate[i] > arrSecondDate[i]){
+				resultYear(arrFistDate, arrSecondDate);
+				break;
+			} else if (arrFistDate[i] < arrSecondDate[i]) {
+				resultYear(arrSecondDate, arrFistDate);
+				break;
+			}
+			if (i == 5 && arrFistDate[i] == arrSecondDate[i]) {
+				resultYear(arrFistDate, arrSecondDate);
+			}
+		}
+	}
+
+	function dateToArray (date) {
+		return [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()]; 
+	}
+
+	function resultYear(firstDate, secondDate) {
+		
+		var years, month, days, hours, minutes, seconds;
+		var difference = [years, month, days, hours, minutes, seconds];
+
+		for (var i = 0; i < 6; i++) {
+			difference[i] = firstDate[i] - secondDate[i];
+		}
+		
+		upd(difference);
+
+		document.getElementById("result").innerHTML = 	difference[0] + " years " + 
+														difference[1] + " month " + 
+														difference[2] + " days " + 
+														difference[3] + " hours " + 
+														difference[4] + " minutes " + 
+														difference[5] + " seconds ";
+	}
+
+	function upd(arr) {
+
+		var systemDate = [0, 12, 30, 24, 60, 60];
+
+		for(var i = arr.length; i > 0 ; i--) {
+			if (arr[i] < 0) {
+
+				var timeVar = arr[i];
+				arr[i] = timeVar + systemDate[i];
+				arr[i-1]--;
+			}
+		}
+	}
+
+</script>
+</html>

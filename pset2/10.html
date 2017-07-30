@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4</title>
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="enter number" id="number">
+	<button id="but">do it!</button><br>
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+		var number = document.getElementById("number").value;
+
+		if (isNaN(number)) {
+			document.getElementById("errorText").innerHTML = "not a number <br>";
+			document.getElementById("number").value = "";
+			document.getElementById("result").innerHTML = "";
+		} else {
+			document.getElementById("errorText").innerHTML = "Ok!";
+			result(number);
+		}
+	}
+
+	function result(number) {
+		var sum = 0;
+
+		for (var i = 0; i < number.length; i++) {
+			if (!isNaN(1 * number[i])) {
+				sum += 1 * number[i];
+			}
+		}
+		document.getElementById("result").innerHTML = sum;
+	}
+	
+</script>
+</html>

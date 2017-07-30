@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>9</title>
+	<style type="text/css">
+		input, button {
+			width: 400px;
+			display: block;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<p id="err"></p>
+	<input type="text" max="100" placeholder="этажей (макс 100)" id="floors">
+	<input type="text" max="20" placeholder="количество подъездов (максимум 20)" id="pod">
+	<input type="text" max="12" placeholder="количество квартир на пролёте (максимум 12)" id="flats-on-floor">
+	<input type="text" max="24000" placeholder="номер квартиры" id="flat">
+
+	<button id="but">do it!</button><br>
+
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+	var err = document.getElementById("err");
+	var errText = "";
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+		errText = "";
+		var floors = document.getElementById("floors").value;
+		var pod = document.getElementById("pod").value;
+		var flatsOnFloor = document.getElementById("flats-on-floor").value;
+		var flat = document.getElementById("flat").value;
+
+		check(floors, "floors", "Количество этажей ");
+		check(pod, "pod", "Количество подъездов ");
+		check(flatsOnFloor, "flats-on-floor", "Количество квартир на пролёте ");
+		check(flat, "flat", "Номер квартиры ")
+
+		if (errText == "") {
+			fixedValues(floors, "floors");
+			fixedValues(pod, "pod");
+			fixedValues(flatsOnFloor, "flats-on-floor");
+			fixedValues(flat, "flat");
+
+			var maxNumber = floors * pod * flatsOnFloor;
+			if (+flat > +maxNumber) {
+				errText = "<b>В этом доме квартир всего " + maxNumber + " !</b>"
+				err.innerHTML = errText;
+				document.getElementById("flat").style.backgroundColor = "rgba(236, 0, 0, 0.2)";
+				document.getElementById("result").innerHTML = "";
+			} else {
+				result(floors, pod, flatsOnFloor, flat);
+			}
+		} else {
+			err.innerHTML = errText;
+		}
+	}
+
+	function check(value, ID, valueName) {
+
+		var max = document.getElementById(ID).max;
+
+		if (isNaN(value) || +value > +max || value < 1 || max.length > 5) {
+			document.getElementById(ID).style.backgroundColor = "rgba(236, 0, 0, 0.2)";
+
+			if (isNaN(value)) {
+				errText += ("<b>" + valueName + "</b>" + " не число!  " + "<br>");
+			} else
+
+			if (+value > +max || max.length > 5) {
+				errText += ("<b>" + valueName + "</b>" + " больше, чем " + max + "! " + "<br>");
+			} else
+
+			if (value < 1) {
+				errText += ("<b>" + valueName + "</b>" + " меньше 1! " + "<br>");
+			}
+			document.getElementById(ID).value = "";
+			return;
+		}
+		document.getElementById(ID).style.backgroundColor = "white";
+	}
+
+	function fixedValues(value, ID) {
+		value = Math.floor(+value);
+		document.getElementById(ID).value = value;
+	}
+
+	function result(floors, pod, flatsOnFloor, flat) {
+		var flatsOnOnePod = floors * flatsOnFloor;
+
+		var thisPod, thisFloor;
+
+		for (var i = 1; i <= pod; i++) {
+			if (flat <= i * flatsOnOnePod) {
+				thisPod = i;
+				break;
+			}
+		}
+
+		for (var i = 1; i <= floors; i++) {
+			if (flat - flatsOnOnePod * (thisPod - 1) <= i * flatsOnFloor) {
+				thisFloor = i;
+				break;
+			}
+		}
+		document.getElementById("result").innerHTML = "Этаж: " + thisFloor + "<br> Подъезд: " + thisPod;
+	}
+
+</script>
+</html>

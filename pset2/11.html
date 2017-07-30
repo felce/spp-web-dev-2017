@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>11</title>
+	<style type="text/css">
+		textarea {
+			width: 800px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<p id="err"></p>
+	<textarea width="500" height="200"  placeholder="enter hrefs" id="textarea"></textarea>
+</body>
+
+<script type="text/javascript">
+
+	document.onclick = findUrl;
+
+	function findUrl() {
+
+		var arr = [];
+		var index = 0;
+		var lastSymbol = 0;
+
+		var err = "";
+
+		var text = document.getElementById("textarea").value;
+		for (var i = 0; i <= text.length; i++) {
+
+			if (text[i] == ',' || i == text.length) {
+				arr[index] = text.substring(lastSymbol, i);
+
+				arr[index] = deleteSpaces(arr[index]);
+				if (!ifURL(arr[index] || arr[index] != "")) {
+
+					err += "no valid url: <b>" + arr[index] + "</b><br>";
+				}
+				lastSymbol = i + 1;
+				index++;
+				if (lastSymbol == text.length) {
+					break;
+				}
+			}
+		}
+		if (err != "") {
+			document.getElementById("err").innerHTML = err;
+		} else {
+			document.getElementById("err").innerHTML = "";
+			deletePrev(arr);
+		}
+
+	}
+
+	function deleteSpaces(url) {
+
+		for (var j = 0; j < url.length; j++) {
+			if (url[j] == ' ') {
+				j--;
+				url = url.replace(" ", "");
+			}
+		}
+		return url;
+	}
+
+//функция проверки url на валиность не моя. помог гугл..
+	function ifURL(url) { 
+	
+
+		var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+			'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+			'((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+			'(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+			'(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+
+		if (!pattern.test(url)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
+	function deletePrev(arr) {
+
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i].substring(0, 7) == 'http://') {
+				arr[i] = arr[i].substring(7);
+			}
+		}
+
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i].substring(0, 8) == 'https://') {
+				arr[i] = arr[i].substring(8);
+			}
+		}
+
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i].substring(0, 4) == 'www.') {
+				arr[i] = arr[i].substring(4);
+			}
+		}
+		sortText(arr);
+	}
+
+	function sortText(arr) {
+
+		arr.sort(function (a, b) {
+			if (a < b) {
+				return -1;
+			}
+			if (a > b) {
+				return 1;
+			}
+			if (a == b) {
+				return 0;
+			}
+		});
+
+		var str = "";
+
+		for (var i = 0; i < arr.length; i++) {
+			if (i != arr.length - 1 && arr[i] != "") {
+				str += arr[i] + ', \n';
+			} else {
+				str += arr[i];
+			}
+		}
+		document.getElementById("textarea").value = str;
+	}
+</script>
+</html>

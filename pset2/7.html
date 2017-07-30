@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>7</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		div {
+			width: 60%;
+			height: 500px;
+			margin-left: 20%;
+		}
+	</style>
+</head>
+<body id="body" align='center'>
+	<div id="cnt">
+		<p id="errorText"></p>
+		<input type="text" placeholder="enter date yyyy:mm:dd " id="date">
+		<button id="but">do it!</button><br>
+		<div id="result"></div>
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+		var input = document.getElementById("date").value;
+		var date = new Date(input);
+
+		if (date == "Invalid Date" || input.length != 10) {
+
+			document.getElementById("errorText").innerHTML = "Invalid Date!";
+			document.getElementById("date").value = "";
+			document.getElementById("date").style.backgroundColor = '#E32636';
+			document.getElementById("result").innerHTML = "";
+			document.getElementById("cnt").style.background = "#ffffff url('img/err.jpg') no-repeat center top";
+		} else {
+			document.getElementById("errorText").innerHTML = "Ok!";
+			document.getElementById("date").style.backgroundColor = 'white';
+
+
+			result(date);
+		}
+	}
+
+	function result(date) {
+
+		var periods = [
+			["Овен", 21, 3, 20, 4, "img/img1.jpg"],
+			["Телец", 21, 4, 21, 5, "img/img2.jpg"],
+			["Близнецы", 22, 5, 21, 6, "img/img3.jpg"],
+			["Рак", 22, 6, 23, 7, "img/img4.jpg"],
+			["Лев", 23, 7, 21, 8, "img/img5.jpg"],
+			["Дева", 22, 8, 23, 9, "img/img6.jpg"],
+			["Весы", 24, 9, 23, 10, "img/img7.jpg"],
+			["Скорпион", 24, 10, 22, 11, "img/img8.jpg"],
+			["Стрелец", 23, 11, 22, 12, "img/img9.jpg"],
+			["Козерог", 23, 12, 31, 12, "img/img10.jpg"],
+			["Козерог", 1, 1, 20, 1, "img/img10.jpg"],
+			["Водолей", 21, 1, 19, 2, "img/img11.jpg"],
+			["Рыбы", 20, 2, 20, 3, "img/img12.jpg"]
+		];
+
+		var year = date.getFullYear();
+
+		for (var i = 0; i < 13; i++) {
+			var fromDate = new Date(year + "-" + periods[i][2] + "-" + periods[i][1]);
+			var toDate = new Date(year + "-" + periods[i][4] + "-" + periods[i][3]);
+
+			if (date >= fromDate && date <= toDate) {
+				document.getElementById("result").innerHTML = periods[i][0];
+				document.getElementById("result").style.cssText = "font-size: 500%; color: rgba(256, 256, 256, 0.2); font-weight: bold; margin-top: 200px;";
+				document.getElementById("cnt").style.background = "#ffffff url('"+ periods[i][5] + "') no-repeat center top";
+				break;
+			}
+		}
+	}
+</script>
+</html>

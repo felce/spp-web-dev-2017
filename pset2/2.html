@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2</title>
+	<script type="text/javascript">
+	
+		var sum = 0;
+
+		// первый способ
+
+		// for(var i = -1000; i <= 1000; i++) {
+		// 	if  (i > 0 && ((i - 2)%10 == 0 || 
+		// 		(i - 3)%10 == 0 || 
+		// 		(i - 7)%10 == 0)) {
+		// 		document.writeln(i);
+
+		// 		sum = sum + i;
+		// 	}
+
+		// 	if( i < 0 && ((i + 2)%10 == 0 || 
+		// 		(i + 3)%10 == 0 || 
+		// 		(i + 7)%10 == 0)) {
+		// 		document.writeln(i);
+
+		// 		sum = sum + i;
+		// 	}
+		
+
+		//второй способ
+
+		for (var i = -1000; i <= 1000; i++) {
+			var lastNumber = i.toString().length - 1;
+			if (i.toString()[lastNumber] == "2" || i.toString()[lastNumber] == "3" || i.toString()[lastNumber] == "7") {
+				document.writeln(i);
+				sum = sum + i;
+			}
+		}
+
+		document.write("<b><br>sum: ", sum, "<b>");
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8 - div</title>
+	<style type="text/css">
+		input {
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+	<p id="err"></p>
+	<input type="text" placeholder="example 8x8 (no more 30x30)" id="size">
+	<button id="but">do it!</button><br>
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+
+		var size = document.getElementById("size");
+		var err = document.getElementById("err");
+
+		var input = size.value;
+
+		var height;
+		var width;
+
+		for (var i = 0; i < input.length; i++) {
+			if (input[i] == "x") {
+				width = input.substring(0, i);
+				height = input.substring(i + 1, input.length);
+				break;
+			}
+		}
+
+		if (isNaN(width) || isNaN(height)) {
+			err.innerHTML = "ooops... not a number! ";
+			size.value = "";
+		} else if (width != height) {
+			err.innerHTML = "oops... height != width ";
+			size.value = "";
+		} else if (width > 30) {
+			err.innerHTML = "oops... more then 30x30! ";
+			size.value = "";
+		} else {
+			err.innerHTML = "Ok! " + input;
+			size.value = "";
+			document.getElementById("result").innerHTML = "";
+			build(width);
+		}
+	}
+
+	function build(width) {
+
+
+		var allWidth = 630;
+		var widthOfOne = allWidth / width;
+
+		document.getElementById("result").style.cssText = "width: 630px; height: 630px;"
+		var divImgStyle = "position: relative; height:" + widthOfOne + "px; width:" + widthOfOne + "px;";
+
+		var divImg = [];
+
+		for (var i = 0; i < width; i++) {
+			divImg[i] = new Array();
+			for (var j = 0; j < width; j++) {
+				var className = i;
+				divImg[i][j] = document.createElement('div');
+
+				divImg[i][j].classList.add(className);
+
+				document.getElementById("result").appendChild(divImg[i][j]);
+				divImg[i][j].style.cssText = divImgStyle;
+			}
+		}
+		for (var n = 0; n < width; n++) {
+			var className = n + "";
+
+			for (var l = 0; l < width; l++) {
+
+				var elems = document.getElementsByClassName(className);
+				elems[l].style.display = "inline-block";
+
+				if (((n + 1) % 2 != 0 && (l + 1) % 2 == 0) || ((n + 1) % 2 == 0 && (l + 1) % 2 != 0)) {
+					elems[l].style.backgroundColor = 'black';
+				} else {
+					elems[l].style.backgroundColor = '#ABCDEF';
+				}
+				if (n >= 1) {
+					elems[l].style.marginTop = "-4px";
+				}
+			}
+		}
+	}
+
+</script>
+</html>

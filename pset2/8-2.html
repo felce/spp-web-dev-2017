@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8-table</title>
+	<style type="text/css">
+		input {
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="example 8x8 (no more 50x50)" id="size">
+	<button id="but">do it!</button><br>
+	<table id="result"></table>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+
+		var size = document.getElementById("size");
+		var err = document.getElementById("errorText");
+
+		var input = size.value;
+
+		var height;
+		var width;
+
+		for (var i = 0; i < input.length; i++) {
+			if (input[i] == "x") {
+				width = input.substring(0, i);
+				height = input.substring(i + 1, input.length);
+				break;
+			}
+		}
+
+		if (isNaN(width) || isNaN(height)) {
+			err.innerHTML = "ooops... not a number! ";
+			size.value = "";
+		} else if (width != height) {
+			err.innerHTML = "oops... height != width ";
+			size.value = "";
+		} else if (width > 50) {
+			err.innerHTML = "oops... more then 50x50! ";
+			size.value = "";
+		} else {
+			err.innerHTML = "Ok! " + input;
+			size.value = "";
+			document.getElementById("result").innerHTML = "";
+			build(width);
+		}
+	}
+
+	function build(width) {
+
+		var allWidth = 630;
+		var widthOfOne = allWidth / width;
+
+
+		document.getElementById("result").style.cssText = "width: 630px; height: 630px; border: 0; border-spacing: 0; border-collapse: collapse;"
+		var style = "position: relative; height:" + widthOfOne - 2 + "px; width:" + widthOfOne + "px; border: 0; border-spacing: 0;border-collapse: collapse;";
+
+		for (var i = 0; i < width; i++) {
+			var tr = document.createElement('tr');
+			tr.style.cssText = " border: 0; border-spacing: 0;border-collapse: collapse;";
+			document.getElementById("result").appendChild(tr);
+			for (var j = 0; j < width; j++) {
+
+				td = document.createElement('td');
+				tr.appendChild(td);
+
+				td.style.cssText = style;
+				if (((i + 1) % 2 != 0 && (j + 1) % 2 == 0) || ((i + 1) % 2 == 0 && (j + 1) % 2 != 0)) {
+					td.style.backgroundColor = 'black';
+				} else {
+					td.style.backgroundColor = '#ABCDEF';
+				}
+			}
+		}
+	}
+
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4</title>
+
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="enter seconds" id="sec">
+	<button id="but">do it!</button><br>
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick  = checkInput;
+
+	function checkInput() {
+		
+		var sec = document.getElementById("sec").value;
+
+		if (isNaN(sec)){
+			document.getElementById("errorText").innerHTML = "not a number <br>";
+			document.getElementById("sec").value = "";
+			document.getElementById("result").innerHTML = "";
+		} else if (sec < 0) {
+			document.getElementById("errorText").innerHTML = "not a posotive number <br>";
+			document.getElementById("sec").value = "";
+			document.getElementById("result").innerHTML = "";
+		} else{
+			document.getElementById("errorText").innerHTML = "Ok!";
+			resultTime(sec);
+		}
+	}
+
+	function resultTime (sec) {
+
+		var hours, minutes, seconds;
+
+		hours = Math.floor(sec/3600);
+		minutes = Math.floor((sec - hours*3600)/60);
+		seconds = sec - hours*3600 - minutes*60;
+
+		hours = addZero(hours);
+		minutes = addZero(minutes);
+		seconds = addZero(seconds);
+
+		document.getElementById("result").innerHTML = hours + ":" + minutes + ":" + seconds;
+	}
+
+	function addZero(a) {
+
+		if (a < 10) {
+			a = "0" + a;
+		}
+
+		return a;
+	}
+	
+
+</script>
+</html>

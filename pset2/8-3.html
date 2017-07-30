@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8-canvas</title>
+	<style type="text/css">	
+		input {
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="example 8x8 (no more 200x200)" id="size">
+	<button id="but">do it!</button><br>
+	<canvas id="canvas" width="630" height="630"></canvas>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick = checkInput;
+
+	function checkInput() {
+
+		var size = document.getElementById("size");
+		var err = document.getElementById("errorText");
+
+		var input = size.value;
+
+		var height;
+		var width;
+
+		for (var i = 0; i < input.length; i++) {
+			if (input[i] == "x") {
+				width = input.substring(0, i);
+				height = input.substring(i + 1, input.length);
+				break;
+			}
+		}
+
+		if (isNaN(width) || isNaN(height)) {
+			err.innerHTML = "ooops... not a number! ";
+			size.value = "";
+		} else if (width != height) {
+			err.innerHTML = "oops... height != width ";
+			size.value = "";
+		} else if (width > 200) {
+			err.innerHTML = "oops... more then 50x50! ";
+			size.value = "";
+		} else {
+			err.innerHTML = "Ok! " + input;
+			size.value = "";
+			document.getElementById("canvas").innerHTML = "";
+			build(width);
+		}
+	}
+
+	function build(width) {
+		var oX = 0, oY = 0;
+
+		var widthOfOne = 630/width;
+
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext('2d');
+
+		for (var i = 0; i < width; i++) {
+			
+				for (var j = 0; j < width; j++) {
+					if (((i + 1) % 2 != 0 && (j + 1) % 2 == 0) || ((i + 1) % 2 == 0 && (j + 1) % 2 != 0)) {
+						ctx.fillStyle = "black";
+					} else {
+						ctx.fillStyle = "#ABCDEF";
+					}
+					ctx.fillRect(oX, oY, widthOfOne, widthOfOne);
+
+					oX+=widthOfOne;
+				}
+			oY += widthOfOne;
+			oX = 0;
+		}
+	}
+
+</script>
+</html>

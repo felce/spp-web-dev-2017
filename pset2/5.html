@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>5</title>
+</head>
+<body>
+	<p id="errorText"></p>
+	<input type="text" placeholder="enter number of years" id="years">
+	<button id="but">do it!</button><br>
+	<div id="result"></div>
+</body>
+
+<script type="text/javascript">
+
+	document.getElementById("but").onclick  = checkInput;
+
+	function checkInput() {
+
+		var years = document.getElementById("years").value;
+
+		if (isNaN(years)){
+			document.getElementById("errorText").innerHTML = "not a number <br>";
+			document.getElementById("years").value = "";
+			document.getElementById("result").innerHTML = "";
+		} else if (years < 0 || years > 200) {
+			document.getElementById("errorText").innerHTML = "unreal (enter number from 0 to 200) <br>";
+			document.getElementById("years").value = "";
+			document.getElementById("result").innerHTML = "";
+		} else{
+			document.getElementById("errorText").innerHTML = "Ok!";
+			resultYear(years);
+		}
+	}
+
+	function resultYear(years) {
+		
+		var word;
+
+		var len = years.length - 1;
+
+		if (years[len] == 1 && years[len-1] != 1){
+			word = "год";
+		} else if ((years[len] == 2 || years[len] == 3 || years[len] == 4) && years[len-1] != 1) {
+			word = "года";
+		} else {
+			word = "лет";
+		}
+
+		document.getElementById("result").innerHTML = years + " " + word;
+	}
+</script>
+</html>
