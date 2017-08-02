@@ -1,0 +1,41 @@
+.all {
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  width: 500px;
+  text-align: inherit;
+  line-height: 60px;
+  font-family: Arial;
+  font-size: 150%;
+  color: lightgray;
+  cursor: pointer;
+  margin: 0px auto;
+}
+
+span {
+  padding-left: 25px;
+}
+
+.down {
+  float: right;
+  margin-right: 25px;
+  font-size: 50%;
+}
+
+.friend {
+  padding-left: 25px;
+  height: 60px;
+  line-height: 60px;
+  list-style-type: none;
+  color: black;
+  font-family: Arial;
+  font-size: 80%;
+  font-weight: lighter;
+  display: none;
+}
+
+img {
+  padding: 5px;
+  margin-right: 25px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
