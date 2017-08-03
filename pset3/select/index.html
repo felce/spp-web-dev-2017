@@ -3,17 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>select</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script type="text/javascript" src="script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-
 <body>
 	<div class="all">
-		<span class="nameSpan">Select Friend:</span> 
+		<div class='friendChoise'>
+			<img id="choiseImg" width='20' src=''> 
+			<span id="text"></span> 
+		</div>
+		<span class="nameSpan">Select Friend:</span> 	
 		<span  id="spanDown" class="down">&#9947;</span>
-		<div id="friend-list"></div>
+		<div id="friend-list" class="list"></div>
 	</div>
 	<p id="result"></p>
+	
+	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

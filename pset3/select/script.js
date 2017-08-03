@@ -12,7 +12,7 @@ $(document).ready(function () {
 		$("#friend-list").append("<div class='friend' id='" + names[i][0] + "'><img width='20' src='" + names[i][1] + "'>" + names[i][0] + "</div>");
 	}
 
-	for (var i = 0; i < names.length; i++) {
+	for (var i = 1; i <= names.length; i++) {
 		var color = "#" + Math.floor(Math.random() * 700000 + 100000);
 		console.log(color);
 		$("img:eq(" + i + ")").css('background-color', color);
@@ -37,7 +37,14 @@ $(document).ready(function () {
 		function () {
 			$("#friend-list div").hide();
 			$("span").hide();
-			$(this).show();
+
+			var src = $(this).find('img').get(0).src;
+			$("#choiseImg").css('background-color', $(this).find('img').css('background-color'));
+			$("#choiseImg").attr("src",src);
+			$("#text").html(this.id);
+			$("#text").show();
+			$(".friendChoise").show();
+
 			$(".down").show();
 			friendId = this.id;
 			$("#result").html("<b>Friend ID: </b>" + friendId);
