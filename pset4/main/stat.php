@@ -17,7 +17,7 @@
   }
 </style>
 <body>
-  <h1>Your choise is: <?php echo $_POST["choise"]; ?> </h1>
+  <h1>Your choice is: <?php echo $_POST["choise"]; ?> </h1>
   <p>thank you</p>
 
 <?php
