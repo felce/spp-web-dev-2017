@@ -12,7 +12,7 @@
  		<title>Easy chat</title>
  		<?php echo "<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>"?>
  		<?php echo "<link rel='stylesheet' type='text/css' href='style/chat.css'>"?>
- 		<?php echo "<script src='jquery-3.2.1.min.js'></script>"?>
+ 		<?php echo "<script src='js/jquery-3.2.1.min.js'></script>"?>
  	</head>
  	<body>
  		<header>
@@ -34,34 +34,6 @@
  			<input class="btn" type="submit" name="send" value="Send">
  		</form>
 
-<script>
-  function show(){
-    if ($("#messages:hover").length == 0) {
-      $("#messages").scrollTop($("#messages")[0].scrollHeight - $("#messages")[0].clientHeight);
-    }
-    $.ajax({
-      url: "find.php",
-      cache: false,
-      success: function(html) {
-        $("#messages").html(html);
-      }
-    });
-  }
-  setInterval("show()", 100);
-
-  $("#formMessage").submit(function(){
-    var str = $(this).serialize();
-    $("#text").value = "";
-      $.ajax({
-        type: "POST",
-        url: "addMessage.php",
-        data: str,
-        success: function() {
-            $("#formMessage")[0].reset();
-        }
-      });
-      return false;
-  });
-</script>
+    <?php echo "<script src='js/chat.js'></script>"?>
 </body>
 </html>

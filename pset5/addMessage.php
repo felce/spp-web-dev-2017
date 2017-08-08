@@ -2,7 +2,7 @@
   session_start();
   $author = $_SESSION["login"];
   $text = $_POST["newMessage"];
-
+  date_default_timezone_set('Europe/Kiev');
   $time = date('H:i:s');
   $diffTime = strtotime("now");
 
@@ -38,7 +38,7 @@
     $jsonMessages[$index]["author"] = $author;
     $jsonMessages[$index]["text"] = $text;
     $jsonMessages[$index]["diffTime"] = $diffTime;
-    $newJsonString = json_encode($jsonMessages);
+    $newJsonString = json_encode($jsonMessages, JSON_PRETTY_PRINT);
     file_put_contents($mesFile, $newJsonString);
   }
 ?>

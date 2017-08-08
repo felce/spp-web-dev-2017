@@ -28,7 +28,7 @@
     }
 
   function openJson($login, $pass, $errPass) {
-    $usersFile = "json/users.json";
+    $usersFile = "users.json";
     $jsonUsers = json_decode(file_get_contents($usersFile), true);
     $ifFindUser = false;
     $index = 0;
@@ -42,7 +42,7 @@
     if (!$ifFindUser) {
       $jsonUsers[$index]["login"] = $login;
       $jsonUsers[$index]["pass"] = $pass;
-      $newJsonString = json_encode($jsonUsers);
+      $newJsonString = json_encode($jsonUsers, JSON_PRETTY_PRINT);
       file_put_contents($usersFile, $newJsonString);
     } else {
       if ($pass != $userPass){
