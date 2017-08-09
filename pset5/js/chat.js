@@ -1,12 +1,23 @@
-function show(){
+$(document).ready(function() {
+  $.ajax({
+    url: "welcome.php",
+    cache: false,
+    success: function(html) {
+      $("#messages").html(html);
+    }
+  });
+})
+
+function show() {
   if ($("#messages:hover").length == 0) {
-    $("#messages").scrollTop($("#messages")[0].scrollHeight - $("#messages")[0].clientHeight);
+    $("#chatcnt").scrollTop($("#chatcnt")[0].scrollHeight - $("#chatcnt")[0].clientHeight);
   }
+
   $.ajax({
     url: "find.php",
     cache: false,
     success: function(html) {
-      $("#messages").html(html);
+      $("#messages").append(html);
     }
   });
 }
@@ -14,7 +25,6 @@ setInterval("show()", 1000);
 
 $("#formMessage").submit(function(){
   var str = $(this).serialize();
-  $("#text").value = "";
     $.ajax({
       type: "POST",
       url: "addMessage.php",

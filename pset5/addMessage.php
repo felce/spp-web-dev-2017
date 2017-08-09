@@ -1,32 +1,17 @@
 <?php
   session_start();
   $author = $_SESSION["login"];
-  $text = $_POST["newMessage"];
+  $text = htmlspecialchars($_POST["newMessage"]);
   date_default_timezone_set('Europe/Kiev');
   $time = date('H:i:s');
   $diffTime = strtotime("now");
 
   if ( strlen($text) > 1) {
-    $len = strlen($text);
-    for ($i = 0; $i < $len; $i++) {
-      $len = strlen($text);
-      if ($text[$i] == ":" && ($text[$i + 1] == ")" || $text[$i + 1] == "(")){
-        $i=0;
-        $text = findSmiles($text);
-      }
-    }
+    $text = str_replace(":)", "<img width='25' src='img/smile.png'>", $text);
+    $text = str_replace(":(", "<img width='25' src='img/sadsmile.png'>", $text);
+    $text = str_replace("(:", "<img width='25' src='img/smile.png'>", $text);
+    $text = str_replace("):", "<img width='25' src='img/sadsmile.png'>", $text);
     addNewMessageToJson($author, $text, $time, $diffTime);
-  }
-
-  function findSmiles($text) {
-    $smileIndex = strpos($text,":");
-    if ($smileIndex !== false && $text[$smileIndex + 1] == ")"){
-      return substr($text, 0, $smileIndex)."<img width='25' src='img/smile.png'>".substr($text, $smileIndex + 2);
-    } else if ($smileIndex !== false && $text[$smileIndex + 1] == "("){
-      return substr($text, 0, $smileIndex)."<img width='25' src='img/sadsmile.png'>".substr($text, $smileIndex+2);
-    } else {
-      return $text;
-    }
   }
 
   function addNewMessageToJson($author, $text, $time,$diffTime){

@@ -10,9 +10,9 @@
  	<head>
  		<meta charset="utf-8">
  		<title>Easy chat</title>
- 		<?php echo "<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>"?>
- 		<?php echo "<link rel='stylesheet' type='text/css' href='style/chat.css'>"?>
- 		<?php echo "<script src='js/jquery-3.2.1.min.js'></script>"?>
+ 		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+ 		<link rel='stylesheet' type='text/css' href='style/chat.css'>
+ 		<script src='js/jquery-3.2.1.min.js'></script>
  	</head>
  	<body>
  		<header>
@@ -28,12 +28,15 @@
  			<div class="headerCnt color5"></div>
  		</header>
  		<div class="title">Easy Chat</div>
- 		<div id="messages" class="messagesCnt" ></div>
+    <div class="chat" id="chatcnt" >
+   		<div id="messages" class="messagesCnt" >
+      </div>
+    </div>
  		<form id="formMessage">
- 			<input id="text" class="text" type="text" placeholder="enter your message..." name="newMessage">
+ 			<input class="text" type="text" placeholder="enter your message..." name="newMessage">
  			<input class="btn" type="submit" name="send" value="Send">
  		</form>
 
-    <?php echo "<script src='js/chat.js'></script>"?>
+    <script src='js/chat.js'></script>
 </body>
 </html>

@@ -7,11 +7,13 @@ body {
   color: #635960;
   background-color: #b9c783;
   font-family: Montserrat;
+  overflow: hidden;
 }
 
 span {
+  font-size: 80%;
   display: block;
-  color: red;
+  color: beige;
 }
 
 header {
@@ -70,6 +72,8 @@ form {
 }
 
 .text {
+  width: 190px;
+  padding-left: 10px;
   background-color: #fffecd;
   color: #635960;
   font-weight: bolder;
@@ -78,6 +82,7 @@ form {
 }
 
 .btn {
+  width: 200px;
   position: absolute;
   background-color: #635960;
   color: #fffecd;
@@ -88,7 +93,6 @@ form {
 }
 
 input {
-  width: 200px;
   border: 0;
   height: 30px;
   margin-bottom: 20px;

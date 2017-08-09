@@ -22,7 +22,7 @@
 
   function checkLenInput($value, $err) {
       if (strlen(trim($value)) < 3) {
-        $err = "more 2 symbols!";
+        $err = "Your username or password cannot be shorter than 3 characters.";
       }
       return $err;
     }
@@ -46,7 +46,7 @@
       file_put_contents($usersFile, $newJsonString);
     } else {
       if ($pass != $userPass){
-        $errPass = "no correct password";
+        $errPass = "Incorrect password";
       }
     }
     return $errPass;
@@ -59,9 +59,9 @@
 		<meta charset="utf-8">
 		<title>auth</title>
 	</head>
-	<?php echo "<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>"?>
-	<?php echo "<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>"?>
-	<?php echo "<link rel='stylesheet' type='text/css' href='style/auth.css'>"?>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+	<link rel='stylesheet' type='text/css' href='style/auth.css'>
 	<body>
 		<header>
 			<div class="headerCnt color1"></div>
