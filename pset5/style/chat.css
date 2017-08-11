@@ -99,3 +99,11 @@ header {
   font-size: 300%;
   font-family: Pacifico;
 }
+
+.welcome {
+  width: 500px;
+  z-index: 99;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+}

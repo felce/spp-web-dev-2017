@@ -1,52 +1,54 @@
 <?php
-  $login = "";
-  $pass = "";
-  $errLogin = "";
-  $errPass = "";
+  $login = '';
+  $pass = '';
+  $errLogin = '';
+  $errPass = '';
   session_start();
-  if (isset($_POST["btn"])) {
-    $login = htmlspecialchars($_POST["login"]);
-    $pass = htmlspecialchars($_POST["pass"]);
+  $_SESSION['auth'] = false;
+  if (isset($_POST['btn'])) {
+    $login = htmlspecialchars($_POST['login']);
+    $pass = htmlspecialchars($_POST['pass']);
     $errLogin = checkLenInput($login, $errLogin);
     $errPass = checkLenInput($pass, $errPass);
-    if ($errLogin == "" && $errPass == "") {
+    if ($errLogin === '' && $errPass === '') {
       $errPass = openJson($login, $pass, $errPass);
     }
-    if ($errPass == "") {
-      header("Location: chat.php");
+    if ($errPass === '') {
+      $_SESSION['auth'] = true;
+      header('Location: chat.php');
     }
   }
 
-  $_SESSION["login"] = $login;
-  $_SESSION["pass"] = $pass;
+  $_SESSION['login'] = $login;
+  $_SESSION['pass'] = $pass;
 
   function checkLenInput($value, $err) {
       if (strlen(trim($value)) < 3) {
-        $err = "Your username or password cannot be shorter than 3 characters.";
+        $err = 'Your username or password cannot be shorter than 3 characters.';
       }
       return $err;
     }
 
   function openJson($login, $pass, $errPass) {
-    $usersFile = "users.json";
+    $usersFile = 'users.json';
     $jsonUsers = json_decode(file_get_contents($usersFile), true);
     $ifFindUser = false;
     $index = 0;
     foreach ($jsonUsers as $value){
-      if ($value["login"] == $login){
-        $userPass = $value["pass"];
+      if ($value['login'] === $login){
+        $userPass = $value['pass'];
         $ifFindUser = true;
       }
       $index++;
     }
     if (!$ifFindUser) {
-      $jsonUsers[$index]["login"] = $login;
-      $jsonUsers[$index]["pass"] = $pass;
+      $jsonUsers[$index]['login'] = $login;
+      $jsonUsers[$index]['pass'] = $pass;
       $newJsonString = json_encode($jsonUsers, JSON_PRETTY_PRINT);
       file_put_contents($usersFile, $newJsonString);
     } else {
       if ($pass != $userPass){
-        $errPass = "Incorrect password";
+        $errPass = 'Incorrect password';
       }
     }
     return $errPass;

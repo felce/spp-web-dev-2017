@@ -1,8 +1,7 @@
 <?php
-  $errMessage = "";
   session_start();
-  if ($_SESSION["login"] == ""){
-    header("Location: auth.php");
+  if (!$_SESSION['auth']){
+    header('Location: auth.php');
   }
  ?>
 
@@ -27,6 +26,7 @@
  			<div class="headerCnt color4"></div>
  			<div class="headerCnt color5"></div>
  		</header>
+    <div id="welcomemessage" class="welcome"></div>
  		<div class="title">Easy Chat</div>
     <div class="chat" id="chatcnt" >
    		<div id="messages" class="messagesCnt" >
