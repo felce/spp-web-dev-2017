@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 15 2017 г., 15:18
+-- Время создания: Авг 15 2017 г., 15:45
 -- Версия сервера: 10.1.25-MariaDB
 -- Версия PHP: 7.1.7
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `messages` (
-  `time` varchar(9) NOT NULL,
-  `author` varchar(20) NOT NULL,
-  `text` varchar(1000) CHARACTER SET utf16 NOT NULL,
+  `time` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diffTime` int(11) UNSIGNED NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -42,10 +42,10 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `login` varchar(20) CHARACTER SET utf32 NOT NULL,
-  `password` varchar(32) CHARACTER SET utf16 NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL,
+  `login` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Индексы сохранённых таблиц
@@ -55,8 +55,7 @@ CREATE TABLE `users` (
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `login` (`login`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -66,7 +65,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
