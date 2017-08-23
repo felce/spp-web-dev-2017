@@ -20,9 +20,11 @@ for ($i = 0; $i < $numrows; $i++) {
     date_default_timezone_set('Europe/Kiev');
     $currentTime = strtotime('now');
     $timeInPast = $messagesInfo['diffTime'];
+    $time = $messagesInfo['time'];
+    $time = date("H:i:s",strtotime($time));
     $differenceInMinutes = abs(($currentTime - $timeInPast) / 60);
     if ($differenceInMinutes < 60) {
-        echo '<p>[', $messagesInfo['time'], '] <b>', $messagesInfo['author'], ':</b> ', $text, '</p>';
+        echo '<p>[', $time, '] <b>', $messagesInfo['author'], ':</b> ', $text, '</p>';
     }
 }
 

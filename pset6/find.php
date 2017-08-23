@@ -18,8 +18,10 @@ if ($indexOfLastMessageInSession !== $indexOfLastMessage) {
         $messages->data_seek($i);
         $messagesInfo = $messages->fetch_array(MYSQLI_ASSOC);
         $text = $messagesInfo['text'];
+        $time = $messagesInfo['time'];
+        $time = date("H:i:s",strtotime($time));
         $text = str_replace($smiles, $smilesImg, $text);
-        echo '<p>[', $messagesInfo['time'], '] <b>', $messagesInfo['author'], ':</b> ', $text, '</p>';
+        echo '<p>[', $time, '] <b>', $messagesInfo['author'], ':</b> ', $text, '</p>';
     }
 
     $_SESSION['indexOfLastMessage'] = $indexOfLastMessage;

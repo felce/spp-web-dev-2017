@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 23 2017 г., 14:45
+-- Время создания: Авг 23 2017 г., 18:49
 -- Версия сервера: 10.1.25-MariaDB
 -- Версия PHP: 7.1.7
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `messages` (
-  `time` time NOT NULL,
+  `time` datetime NOT NULL,
   `author` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diffTime` int(11) UNSIGNED NOT NULL
