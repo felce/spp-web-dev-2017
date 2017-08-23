@@ -1,9 +1,0 @@
-vfbf16:03:13 location auth.php
-16:03:22 location auth.php
-16:03:22 client enter login alex and password alex
-16:03:22 client enter login or password longer than 3 characters
-16:03:22 find user alex in db
-16:03:22 user alex auth
-16:03:22 location chat.php
-15:03:23 download messages from db
-16:04:16 user alex add new message  xv xvx
