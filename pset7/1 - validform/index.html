@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>valid-js</title>
+        <style>
+            input, button {
+              width: 300px;
+              margin: 10px auto;
+              display: block;
+            }
+        </style>
+    </head>
+    <body align="center">
+        <form id="authForm" class="auth">
+            <span id="errIp"></span>
+            <input type="text" id="ip" placeholder="ip">
+            <span id="errURL"></span>
+            <input type="text" id="url" placeholder="url">
+            <span id="errEmail"></span>
+            <input type="text" id="email" placeholder="email">
+            <span id="errDate"></span>
+            <input type="text" id="date" placeholder="date MM/DD/YYYY">
+            <span id="errTime"></span>
+            <input type="text" id="time" placeholder="time HH:MM:SS">
+        </form>
+        <button id="btn">check</button>
+        <script>
+        document.getElementById("btn").onclick = function () {
+          var ip = document.getElementById("ip").value;
+          var url = document.getElementById("url").value;
+          var email = document.getElementById("email").value;
+          var date = document.getElementById("date").value;
+          var time = document.getElementById("time").value;
+
+          var errIp = document.getElementById("errIp");
+          var errURL = document.getElementById("errURL");
+          var errEmail = document.getElementById("errEmail");
+          var errDate = document.getElementById("errDate");
+          var errTime = document.getElementById("errTime");
+
+          var patternIp = /^((25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(25[0-5]|2[0-4]\d|[01]?\d?\d)$/;
+
+          var patternUrl = /^https?:\/\/[^ /$.?#].[^ ]*$/i;
+
+          //логин может состоять из букв и цифр, точки, тире и подчеркивания.
+          //при чём спецсимволы не могут быть в начале или конце логина и идти два подряд.
+          //максимальная длина поддомена и домена - 256. домена - 6
+          var patternEmail = /^[A-Za-z\d]{1}([._-]?[A-Za-z\d]){1,60}@[A-Za-z\d]{2,250}(\.[a-z]{2,6})?$/;
+
+          //не учитывая разное количество дней в месяцах
+          // var patternDate = /^([0][1-9]|[12]\d|[3][01])\/([0][1-9]|[1][0-2])\/(\d{4})$/;
+
+          //учитывая разное количество дней в месяцах
+          var patternDate = /^((([0][1-9])|([1]\d)|(2[0-8]))\/[0][2])|((([0][1-9])|([12]\d)|([3][0])|([3][1]))\/(([0][13578])|([1][0])|([1][2])))|((([0][1-9])|([12]\d)|([3][0]))\/(([0][469])|([1][1])))\/\d{4}$/;
+
+          var patternTime = /^([01]\d|[2][0-3])\:([0-5]\d)\:([0-5]\d)$/;
+
+          var inputs = [ip, url, email, date, time];
+          var patterns = [patternIp, patternUrl, patternEmail, patternDate, patternTime];
+          var errors = [errIp, errURL, errEmail, errDate, errTime];
+
+          for (var i = 0; i < 5; i++) {
+              if (!patterns[i].test(inputs[i])) {
+                  errors[i].innerHTML = "incorrect";
+              }
+              else {
+                  errors[i].innerHTML = "ok";
+              }
+          }
+      }
+        </script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
