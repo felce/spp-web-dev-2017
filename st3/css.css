@@ -1,0 +1,61 @@
+body{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.cnt {
+	position: relative;
+	width: 900px;
+	height: 587px;
+}
+
+.img_main {
+	position: absolute;
+	z-index: 9;
+}
+
+.draggable {
+	padding: 10px;
+	font-weight: bolder;
+	color: white;
+	position: relative;
+	border-radius: 20px;
+	z-index: 99;
+	width: 200px;
+	max-width: 300px;
+	min-height: 50px;
+	background-color: #666;
+	text-align: center;
+	line-height: 50px;
+	border: 2px solid white;
+	word-wrap: break-word;
+	cursor: pointer;
+}
+
+.draggable:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height:0;
+	left: 30px;
+	top: 100%;
+	border: 15px solid;
+	border-color: white transparent transparent transparent;
+}
+
+.draggableChange:after {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height:0;
+	left: 170px;
+	top: 100%;
+	border: 15px solid;
+	border-color: white transparent transparent transparent;
+}
+input {
+	vertical-align: middle;
+
+	width: 80%;
+	min-height: 30px;
+}
