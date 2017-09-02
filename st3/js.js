@@ -57,12 +57,14 @@ $(document).ready(function () {
                         input.remove();
                         divWithInput[id].withInput = false;
                         apdTextJson(divWithInput[id].index, divWithInput[id].text, divWithInput[id].coords);
-                        element.off("keyup");
+                        //addToJson(divWithInput[id])
                     } else {
                         deleteFromJson(id);
                         divWithInput[id] = {};
                         element.remove();
+                        //indexDraggableDiv--;
                     }
+                    element.off("keyup");
 
                 }
             });
@@ -153,9 +155,7 @@ function addToJson(obj) {
         url: "add_to_json.php",
         data: {
             'index': obj.index,
-            'text': obj.text,
-            'coords': obj.coords
-        },
+          },
         dataType: 'json',
         cache: false,
 

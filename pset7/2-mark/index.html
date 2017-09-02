@@ -24,7 +24,7 @@
             	var pattern = new RegExp(document.getElementById("pattern").value, "g");
             	var searchResult = text.match(pattern);
             	for (var i = 0; i < searchResult.length; i++) {
-            		var p = new RegExp(searchResult[i], "g");;
+            		var p = new RegExp(searchResult[i], "g");
             		text = text.replace(p, "<mark>" + searchResult[i] + "</mark>");
             	}
             	document.getElementById("mark").innerHTML = text;
