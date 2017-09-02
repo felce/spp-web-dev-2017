@@ -21,13 +21,14 @@ body{
 	position: relative;
 	border-radius: 20px;
 	z-index: 99;
-	width: 200px;
+	/*width: 200px;*/
+	display: inline-block;
 	min-width: 70px;
 	max-width: 300px;
-	min-height: 50px;
+	min-height: 40px;
 	background-color: #666;
 	text-align: center;
-	line-height: 50px;
+	line-height: 40px;
 	border: 2px solid white;
 	word-wrap: break-word;
 	cursor: pointer;
