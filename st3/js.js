@@ -120,7 +120,7 @@ cnt.dblclick(function (event) {
 
         newDiv.index = indexDraggableDiv;
         cnt.append(newDiv.div);
-        if (event.pageX + 200 < cnt.width()) {
+        if (event.pageX + 70 < cnt.width()) {
             $("#" + indexDraggableDiv).offset({
                 top: event.pageY - 90,
                 left: event.pageX - 45
@@ -128,12 +128,12 @@ cnt.dblclick(function (event) {
 
             newDiv.coords = [event.pageX - 90, event.pageY - 45];
         } else {
-            var diff = event.pageX + 200 - cnt.width();
+            var diff = event.pageX + 70 - cnt.width();
             $("#" + indexDraggableDiv).offset({
                 top: event.pageY - 90,
                 left: event.pageX - diff - 45
             });
-            newDiv.coords = [event.pageX - 290, event.pageY - 45];
+            newDiv.coords = [event.pageX - 160, event.pageY - 45];
             $("#" + indexDraggableDiv).toggleClass('draggableChange');
         }
 
