@@ -18,13 +18,10 @@ body{
 	padding: 10px;
 	font-weight: bolder;
 	color: white;
-	position: relative;
+	position: absolute;
 	border-radius: 20px;
 	z-index: 99;
-	/*width: 200px;*/
-	display:inline-grid;
-	min-width: 70px;
-	max-width: 300px;
+	width: 100px;
 	min-height: 40px;
 	background-color: #666;
 	text-align: center;
