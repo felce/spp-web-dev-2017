@@ -1,20 +1,10 @@
 <?php
 	date_default_timezone_set('Europe/Kiev');
-	function logging($log) {
-		$fp = fopen('log.txt', 'a');
-		$time = date('H:i:s');
-		fwrite($fp, $time);
-		fwrite($fp, $log. PHP_EOL);
-		fclose($fp);
-		echo "<script type='text/javascript'>",
-	     "console.log('$time', ':', '$log')",
-	     "</script>"
-	     ;
-	}
 
+	session_start();
+	include ('log-func.php');
 	$log = ' location chat.php';
 	logging($log);
-	session_start();
 	if (!$_SESSION['auth']){
 		$log = ' client no auth';
 		logging($log);
@@ -55,5 +45,6 @@
 			<input class="btn" type="submit" name="send" value="Send">
 		</form>
 		<script src='js/chat.js'></script>
+		<script src='js/log.js'></script>
 	</body>
 </html>

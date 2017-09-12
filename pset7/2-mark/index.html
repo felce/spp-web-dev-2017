@@ -4,31 +4,30 @@
         <meta charset="utf-8">
         <title>mark</title>
         <style>
-            input, button {
-              width: 300px;
-              margin: 10px auto;
-              display: block;
+            textarea, input, button, p{
+            display: block;
+            width: 400px;
+            margin: 20px auto;
             }
         </style>
     </head>
-    <body align="center">
-        <form id="authForm" class="auth">
-            <textarea id="text" placeholder="text"></textarea>
-            <input type="text" id="pattern" placeholder="pattern">
-        </form>
-        <button id="btn">check</button>
-        <div id="mark"></div>
+    <body>
+        <textarea id="text"></textarea>
+        <input id="pattern" type="text">
+        <button id="btn">ok</button>
+        <p id="mark"></p>
         <script>
-            document.getElementById("btn").onclick = function () {
-            	var text = document.getElementById("text").value;
-            	var pattern = new RegExp(document.getElementById("pattern").value, "g");
-            	var searchResult = text.match(pattern);
-            	for (var i = 0; i < searchResult.length; i++) {
-            		var p = new RegExp(searchResult[i], "g");
-            		text = text.replace(p, "<mark>" + searchResult[i] + "</mark>");
-            	}
-            	document.getElementById("mark").innerHTML = text;
+            var pattern = document.getElementById('pattern')
+            var mark = document.getElementById('mark')
+            function displayMatches() {
+              var text = document.querySelector('#text').value
+              var regex = new RegExp(pattern.value, 'gi')
+              var newText = text.replace(regex, function(str) {
+                  return "<mark>" + str + "</mark>"
+              })
+              mark.innerHTML = newText
             }
+            document.getElementById('btn').onclick =  displayMatches
         </script>
     </body>
 </html>

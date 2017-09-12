@@ -12,17 +12,7 @@ $errPass  = '';
 session_start();
 date_default_timezone_set('Europe/Kiev');
 
-function logging($log) {
-  $fp = fopen('log.txt', 'a');
-  $time = date('H:i:s');
-  fwrite($fp, $time);
-  fwrite($fp, $log. PHP_EOL);
-  fclose($fp); 
-  echo "<script type='text/javascript'>",
-     "console.log('$time', ':', '$log')",
-     "</script>"
-     ;
-}
+include ('log-func.php');
 
 $log = ' location auth.php';
 logging($log);
@@ -38,7 +28,7 @@ if (isset($_POST['btn'])) {
     $errLogin = checkLenInput($login, $errLogin);
     $errPass  = checkLenInput($pass, $errPass);
     if ($errLogin === '' && $errPass === '') {
-      $log = " client enter login or password longer than 3 characters";
+      $log = ' client enter login or password longer than 3 characters';
       logging($log);
         $errPass = openJson($login, $pass, $errPass);
     }
@@ -56,7 +46,7 @@ $_SESSION['pass']  = $pass;
 function checkLenInput($value, $err) {
     if (strlen(trim($value)) < 3) {
         $err = 'Your username or password cannot be shorter than 3 characters.';
-        $log = " client enter login or password shorter than 3 characters";
+        $log = ' client enter login or password shorter than 3 characters';
         logging($log);
     }
     return $err;
@@ -105,6 +95,7 @@ function openJson($login, $pass, $errPass) {
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
 	<link rel='stylesheet' type='text/css' href='style/auth.css'>
+  <script src='js/jquery-3.2.1.min.js'></script>
 	<body>
 		<header>
 			<div class="headerCnt color1"></div>
@@ -131,5 +122,6 @@ function openJson($login, $pass, $errPass) {
 				<div class="shadow"></div>
 			</div>
 		</form>
+    <script src='js/log.js'></script>
 	</body>
 </html>

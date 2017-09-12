@@ -22,7 +22,7 @@ body{
 	border-radius: 20px;
 	z-index: 99;
 	/*width: 200px;*/
-	display: inline-block;
+	display:inline-grid;
 	min-width: 70px;
 	max-width: 300px;
 	min-height: 40px;

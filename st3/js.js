@@ -120,17 +120,21 @@ cnt.dblclick(function (event) {
 
         newDiv.index = indexDraggableDiv;
         cnt.append(newDiv.div);
+        if(indexDraggableDiv >= 1 && divWithInput[indexDraggableDiv-1].text == "") {
+          $("#" + (indexDraggableDiv - 1)).remove();
+          deleteFromJson(indexDraggableDiv - 1)
+        }
         if (event.pageX + 70 < cnt.width()) {
             $("#" + indexDraggableDiv).offset({
-                top: event.pageY - 90,
+                top: event.pageY - 80,
                 left: event.pageX - 45
             });
 
-            newDiv.coords = [event.pageX - 90, event.pageY - 45];
+            newDiv.coords = [event.pageX - 80, event.pageY - 80];
         } else {
             var diff = event.pageX + 70 - cnt.width();
             $("#" + indexDraggableDiv).offset({
-                top: event.pageY - 90,
+                top: event.pageY - 80,
                 left: event.pageX - diff - 45
             });
             newDiv.coords = [event.pageX - 160, event.pageY - 45];
