@@ -28,7 +28,7 @@ for ($i = 0; $i < count($jsonMes); $i++) {
     $text = $jsonMes[$i]['text'];
     $text = str_replace($smiles, $smilesImg, $text);
 
-    $currentTime         = strtotime('now');
+    $currentTime         = time();
     $timeInPast          = $jsonMes[$i]['diffTime'];
     $differenceInMinutes = abs(($currentTime - $timeInPast) / 60);
     if ($differenceInMinutes < 60) {

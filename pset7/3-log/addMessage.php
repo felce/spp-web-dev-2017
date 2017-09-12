@@ -5,7 +5,7 @@ $author = $_SESSION['login'];
 $text   = htmlspecialchars($_POST['newMessage']);
 date_default_timezone_set('Europe/Kiev');
 $time     = date('H:i:s');
-$diffTime = strtotime('now');
+$diffTime = time();
 
 if (strlen($text) > 1) {
     addNewMessageToJson($author, $text, $time, $diffTime);
